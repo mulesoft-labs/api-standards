@@ -1,0 +1,22 @@
+#%RAML 1.0 Trait
+
+description: |
+  Trait to do offset pagination. If one of the query parameters is present
+  then all the parameters must be present.
+  
+queryParameters: 
+  sort:
+    description: Sorting field and direction to use to retrieve the results.
+    required: false
+    type: string
+    default: <<defaultSort>>
+  offset: 
+    required: false 
+    description: Offset used to retrieve the results.
+    type: integer
+    default: 0
+  limit: 
+    required: false
+    description: Maximum records to retrieve.
+    type: integer
+    default: -1

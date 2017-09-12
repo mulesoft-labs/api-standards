@@ -1,0 +1,41 @@
+#%RAML 1.0 SecurityScheme
+
+description: |
+  Authorization Security Scheme to be use when integrating with Anypoint Access Management
+type: x-token
+
+describedBy:
+  headers:
+    Authorization:
+      description: |
+        Bearer token
+      type: string
+      pattern: "(Bearer(.*)$)|(Basic ([a-zA-Z0-9+/]+={0,2})$)"
+      examples:
+        bearer: Bearer b325e95c-2cd7-11e5-b345-feff819cdc9f
+        basic: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+  responses:
+    401:
+      description: |
+        The information in the  Authorization header did not determine
+        a authenticated an Anypoint Platform user.
+      headers:
+        WWW-Authenticate:
+          example: |
+            WWW-Authenticate: Bearer realm="servers",
+                              error="invalid_token",
+                              error_description="The access token expired"
+      body:
+        application/json:
+          type: !include ../dataTypes/error-message.raml
+          example: |
+            { "message" : "Invalid Bearer Token" }
+    403:
+      description: |
+        The Authorization header could determine an authenticated user but has no
+        permission to access the resource.
+      body:
+        application/json:
+          type: !include ../dataTypes/error-message.raml
+          example: |
+            { "message" : "You are not authorized to perform this request"}
