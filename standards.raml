@@ -10,12 +10,12 @@ traits:
   common-errors: !include traits/common-errors.raml
 
 types:
-  error-message: !include dataTypes/error-message.raml
+  error-response: !include dataTypes/error-response.raml
   uuid: !include dataTypes/UUID.raml
 
 securitySchemes:
   auth-header: !include securitySchemes/authorization.raml
 
-resourceTypes: 
+resourceTypes:
   collection: !include resourceTypes/collection.raml
   collection-item: !include resourceTypes/collection-item.raml

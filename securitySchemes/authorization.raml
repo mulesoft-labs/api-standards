@@ -1,5 +1,8 @@
 #%RAML 1.0 SecurityScheme
 
+uses:
+  std: ../common.raml
+
 description: |
   Authorization Security Scheme to be use when integrating with Anypoint Access Management
 type: x-token
@@ -27,15 +30,17 @@ describedBy:
                               error_description="The access token expired"
       body:
         application/json:
-          type: !include ../dataTypes/error-message.raml
-          example: |
-            { "message" : "Invalid Bearer Token" }
+          type: !include ../dataTypes/error-response.raml
+          example:
+            value:
+              message : Invalid Bearer Token
     403:
       description: |
         The Authorization header could determine an authenticated user but has no
         permission to access the resource.
       body:
         application/json:
-          type: !include ../dataTypes/error-message.raml
-          example: |
-            { "message" : "You are not authorized to perform this request"}
+          type: !include ../dataTypes/error-response.raml
+          example:
+            value:
+              message : You are not authorized to perform this request

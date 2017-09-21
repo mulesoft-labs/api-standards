@@ -8,9 +8,9 @@ uses:
 
 ## **Data Types**
 
-### *Error Message Data type*
+### *Error Response*
 
-All error messages in Management Center _MUST_ be of the Error Message data type.
+Data Type to be used when returning errors. 
 
 ### *UUID*
 
