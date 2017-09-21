@@ -1,21 +1,22 @@
 #%RAML 1.0 Trait
 
-responses: 
+responses:
   415:
     body:
       application/json:
-        type: !include ../dataTypes/error-message.raml
-        example: |
-          { "message" : "Not Supported  Content-Type"}
+        type: !include ../dataTypes/error-response.raml
+        example:
+          value:
+            message : Not Supported  Content-Type
   429:
-    headers: 
+    headers:
       Retry-After:
         examples:
           after-seconds: |
             120
     body:
       application/json:
-        type: !include ../dataTypes/error-message.raml
-        example: |
-          { "message" : "Too Many Requests"}
-        
+        type: !include ../dataTypes/error-response.raml
+        example:
+          value:
+            message : Too Many Requests
